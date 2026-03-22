@@ -93,9 +93,9 @@ function HeroCanvas() {
 
       // Output lines from hub
       const outputs = [
-        { x: W * 0.88, y: H * 0.30 },
-        { x: W * 0.88, y: H * 0.50 },
-        { x: W * 0.88, y: H * 0.70 },
+        { x: W * 0.86, y: H * 0.30, label: 'Tableau' },
+        { x: W * 0.86, y: H * 0.50, label: 'Looker' },
+        { x: W * 0.86, y: H * 0.70, label: 'Redshift' },
       ]
       outputs.forEach((o) => {
         ctx.beginPath()
@@ -113,6 +113,13 @@ function HeroCanvas() {
         ctx.strokeStyle = 'rgba(196, 98, 45, 0.35)'
         ctx.lineWidth = 1
         ctx.stroke()
+
+        // Destination label (below circle, same style as source labels)
+        ctx.fillStyle = 'rgba(114, 112, 106, 0.75)'
+        ctx.font = '9px DM Mono, monospace'
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'top'
+        ctx.fillText(o.label, o.x, o.y + 11)
       })
 
       // Animate particles
@@ -252,15 +259,17 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative pt-[180px] pb-[100px] overflow-hidden">
-        {/* Background orb */}
-        <div
-          className="absolute top-[-200px] right-[-100px] w-[700px] h-[700px] pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(196,98,45,0.07) 0%, transparent 65%)',
-          }}
-        />
+      <section className="relative pt-[180px] pb-[100px]">
+        {/* Background orb — wrapped so it doesn't clip text */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute top-[-200px] right-[-100px] w-[700px] h-[700px]"
+            style={{
+              background:
+                'radial-gradient(circle, rgba(196,98,45,0.07) 0%, transparent 65%)',
+            }}
+          />
+        </div>
 
         <div className="container-main">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

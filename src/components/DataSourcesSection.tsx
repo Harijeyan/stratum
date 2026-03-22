@@ -12,69 +12,81 @@ const fadeUp = {
   }),
 }
 
-/* ── Source node data ── */
 type SourceDef = {
-  cx: number
-  cy: number
   label: string
   abbr: string
   color: string
-  pathId: string
-  path: string
-  dur: string
-  beginOffsets: string[]
+  status: 'ok' | 'warn'
+  records: string
+  syncTime: string
+  progress: number
 }
 
 const SOURCES: SourceDef[] = [
-  {
-    cx: 78, cy: 92, label: 'PostgreSQL', abbr: 'PG', color: '#336791',
-    pathId: 'sp0',
-    path: 'M78,92 C190,92 370,210 468,238',
-    dur: '3.0s', beginOffsets: ['0s', '-1.5s'],
-  },
-  {
-    cx: 78, cy: 238, label: 'Snowflake', abbr: 'SF', color: '#29B5E8',
-    pathId: 'sp1',
-    path: 'M78,238 C220,238 348,238 468,238',
-    dur: '2.6s', beginOffsets: ['0s', '-1.3s'],
-  },
-  {
-    cx: 78, cy: 384, label: 'BigQuery', abbr: 'BQ', color: '#4285F4',
-    pathId: 'sp2',
-    path: 'M78,384 C190,384 370,265 468,238',
-    dur: '3.2s', beginOffsets: ['0s', '-1.6s'],
-  },
-  {
-    cx: 228, cy: 138, label: 'Amazon S3', abbr: 'S3', color: '#FF9900',
-    pathId: 'sp3',
-    path: 'M228,138 C320,138 415,205 468,238',
-    dur: '2.4s', beginOffsets: ['0s', '-1.2s'],
-  },
-  {
-    cx: 228, cy: 238, label: 'Kafka', abbr: 'KF', color: '#231F20',
-    pathId: 'sp4',
-    path: 'M228,238 C320,238 410,238 468,238',
-    dur: '2.2s', beginOffsets: ['0s', '-1.1s'],
-  },
-  {
-    cx: 228, cy: 338, label: 'MongoDB', abbr: 'MG', color: '#47A248',
-    pathId: 'sp5',
-    path: 'M228,338 C320,338 415,272 468,238',
-    dur: '2.8s', beginOffsets: ['0s', '-1.4s'],
-  },
+  { label: 'PostgreSQL', abbr: 'PG', color: '#336791', status: 'ok',   records: '12,847 rows',  syncTime: '2m ago',  progress: 82 },
+  { label: 'Snowflake',  abbr: 'SF', color: '#29B5E8', status: 'ok',   records: '2.1M rows',    syncTime: '4s ago',  progress: 100 },
+  { label: 'BigQuery',   abbr: 'BQ', color: '#4285F4', status: 'ok',   records: '4.5M events',  syncTime: '1m ago',  progress: 91 },
+  { label: 'Amazon S3',  abbr: 'S3', color: '#FF9900', status: 'ok',   records: '892 files',    syncTime: '8s ago',  progress: 75 },
+  { label: 'Kafka',      abbr: 'KF', color: '#AA2200', status: 'warn', records: '847 ev/s',     syncTime: 'live',    progress: 68 },
+  { label: 'MongoDB',    abbr: 'MG', color: '#47A248', status: 'ok',   records: '23.4K docs',   syncTime: '5m ago',  progress: 88 },
 ]
 
-const OUTPUT_NODES = [
-  { cx: 660, cy: 158, label: 'Dashboards',   icon: '◈' },
-  { cx: 660, cy: 238, label: 'Alerts',       icon: '◉' },
-  { cx: 660, cy: 318, label: 'Data Catalog', icon: '◎' },
+const DESTINATIONS = [
+  { label: 'Dashboards', icon: '◈', desc: '3 connected' },
+  { label: 'Alerts',     icon: '◉', desc: '12 rules active' },
+  { label: 'Data Catalog', icon: '◎', desc: '847 assets indexed' },
 ]
 
-const OUTPUT_PATHS = [
-  { id: 'op0', d: 'M530,238 C575,230 625,185 660,158', dur: '2.2s' },
-  { id: 'op1', d: 'M530,238 C575,238 625,238 660,238', dur: '2.0s' },
-  { id: 'op2', d: 'M530,238 C575,246 625,290 660,318', dur: '2.2s' },
-]
+function SourceCard({ label, abbr, color, status, records, syncTime, progress }: SourceDef) {
+  return (
+    <div className="bg-s2 border border-border rounded-xl p-4 relative overflow-hidden group">
+      {/* Colored top accent */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[2px] opacity-60"
+        style={{ background: color }}
+      />
+
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2.5">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: `${color}18`, border: `1px solid ${color}35` }}
+          >
+            <span className="font-mono text-[9px] font-bold" style={{ color }}>
+              {abbr}
+            </span>
+          </div>
+          <span className="font-mono text-[11px] text-tx">{label}</span>
+        </div>
+        <span
+          className={`w-2 h-2 rounded-full flex-shrink-0 ${
+            status === 'ok' ? 'bg-g-green animate-status' : 'bg-g-amber animate-status-warn'
+          }`}
+          style={
+            status === 'ok'
+              ? { boxShadow: '0 0 6px #4DAF7C' }
+              : { boxShadow: '0 0 6px #D4A23A' }
+          }
+        />
+      </div>
+
+      {/* Metrics */}
+      <div className="flex items-center justify-between mb-2.5">
+        <span className="font-mono text-[10px] text-tx">{records}</span>
+        <span className="font-mono text-[10px] text-dim">{syncTime}</span>
+      </div>
+
+      {/* Progress bar */}
+      <div className="h-[3px] bg-border rounded-full overflow-hidden">
+        <div
+          className="h-full rounded-full transition-all"
+          style={{ width: `${progress}%`, background: color, opacity: 0.55 }}
+        />
+      </div>
+    </div>
+  )
+}
 
 export default function DataSourcesSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -117,7 +129,7 @@ export default function DataSourcesSection() {
           </motion.p>
         </div>
 
-        {/* Visualization */}
+        {/* Visualization — integration status board */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -125,6 +137,14 @@ export default function DataSourcesSection() {
           className="relative rounded-2xl border border-border overflow-hidden bg-surface"
           style={{ boxShadow: '0 40px 100px rgba(0,0,0,0.45)' }}
         >
+          {/* Top accent line */}
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(196,98,45,0.5), transparent)',
+            }}
+          />
+
           {/* Card top bar */}
           <div className="flex items-center gap-2 px-5 py-3.5 border-b border-border bg-s2/60">
             <div className="flex gap-1.5">
@@ -133,180 +153,75 @@ export default function DataSourcesSection() {
               <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
             </div>
             <span className="font-mono text-[10px] text-dim mx-auto">
-              stratum — live connections
+              stratum — integration status
             </span>
             <span className="font-mono text-[10px] text-g-green bg-g-green/10 border border-g-green/20 px-2 py-0.5 rounded-full">
               ● 6 sources active
             </span>
           </div>
 
-          {/* SVG */}
-          <div className="w-full overflow-hidden">
-            <svg
-              viewBox="0 0 760 476"
-              className="w-full h-auto"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                {/* Hub glow filter */}
-                <filter id="hub-glow" x="-80%" y="-80%" width="260%" height="260%">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-                <filter id="dot-glow" x="-150%" y="-150%" width="400%" height="400%">
-                  <feGaussianBlur stdDeviation="2.5" />
-                </filter>
+          <div className="p-6 pb-5">
+            {/* Source section label */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-mono text-[10px] text-dim uppercase tracking-[0.1em]">
+                Sources
+              </span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
 
-                {/* Gradient for path lines — source color fading to accent */}
-                {SOURCES.map((s) => (
-                  <linearGradient key={s.pathId + '-lg'} id={s.pathId + '-lg'} gradientUnits="userSpaceOnUse"
-                    x1={s.cx} y1={s.cy} x2="499" y2="238">
-                    <stop offset="0%"   stopColor={s.color}   stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#C4622D" stopOpacity="0.2" />
-                  </linearGradient>
-                ))}
-              </defs>
-
-              {/* ── Connection paths ── */}
-              {SOURCES.map((s) => (
-                <path
-                  key={s.pathId}
-                  id={s.pathId}
-                  d={s.path}
-                  fill="none"
-                  stroke={`url(#${s.pathId}-lg)`}
-                  strokeWidth="1"
-                />
+            {/* Source cards grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+              {SOURCES.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.35 + i * 0.07 }}
+                >
+                  <SourceCard {...s} />
+                </motion.div>
               ))}
+            </div>
 
-              {/* ── Animated dots on input paths ── */}
-              {SOURCES.map((s) =>
-                s.beginOffsets.map((begin, j) => (
-                  <g key={`${s.pathId}-dot-${j}`}>
-                    {/* Glow copy */}
-                    <circle r="4" fill={s.color} opacity="0.3" filter="url(#dot-glow)">
-                      <animateMotion dur={s.dur} repeatCount="indefinite" begin={begin}>
-                        <mpath href={`#${s.pathId}`} />
-                      </animateMotion>
-                      <animate attributeName="opacity"
-                        values="0;0.3;0.3;0"
-                        keyTimes="0;0.08;0.88;1"
-                        dur={s.dur} repeatCount="indefinite" begin={begin} />
-                    </circle>
-                    {/* Core dot */}
-                    <circle r="2.2" fill={s.color}>
-                      <animateMotion dur={s.dur} repeatCount="indefinite" begin={begin}>
-                        <mpath href={`#${s.pathId}`} />
-                      </animateMotion>
-                      <animate attributeName="opacity"
-                        values="0;0.9;0.9;0"
-                        keyTimes="0;0.08;0.88;1"
-                        dur={s.dur} repeatCount="indefinite" begin={begin} />
-                    </circle>
-                  </g>
-                ))
-              )}
+            {/* Connector — via Stratum */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex-1 h-px bg-border/60" />
+              <div className="flex items-center gap-2.5 border border-accent/30 bg-accent/5 rounded-full px-4 py-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
+                <span className="font-mono text-[10px] text-accent tracking-[0.08em] uppercase">
+                  via Stratum
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
+              </div>
+              <div className="flex-1 h-px bg-border/60" />
+            </div>
 
-              {/* ── Output paths ── */}
-              {OUTPUT_PATHS.map((op) => (
-                <path key={op.id} id={op.id} d={op.d} fill="none"
-                  stroke="#C4622D" strokeWidth="1" opacity="0.18" />
+            {/* Destination section label */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-mono text-[10px] text-dim uppercase tracking-[0.1em]">
+                Destinations
+              </span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+
+            {/* Destination cards */}
+            <div className="grid grid-cols-3 gap-3">
+              {DESTINATIONS.map((d, i) => (
+                <motion.div
+                  key={d.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.65 + i * 0.1 }}
+                  className="bg-s2 border border-border/70 rounded-xl p-4 flex items-center gap-3"
+                >
+                  <span className="text-accent text-[18px] flex-shrink-0">{d.icon}</span>
+                  <div>
+                    <div className="font-mono text-[11px] text-tx leading-snug">{d.label}</div>
+                    <div className="font-mono text-[10px] text-dim mt-0.5">{d.desc}</div>
+                  </div>
+                </motion.div>
               ))}
-
-              {/* ── Output dots ── */}
-              {OUTPUT_PATHS.map((op, i) => (
-                [0, 0.5].map((offset) => (
-                  <g key={`${op.id}-dot-${offset}`}>
-                    <circle r="3.5" fill="#C4622D" opacity="0.2" filter="url(#dot-glow)">
-                      <animateMotion dur={op.dur} repeatCount="indefinite" begin={`${offset * parseFloat(op.dur)}s`}>
-                        <mpath href={`#${op.id}`} />
-                      </animateMotion>
-                      <animate attributeName="opacity" values="0;0.2;0.2;0"
-                        keyTimes="0;0.1;0.88;1" dur={op.dur} repeatCount="indefinite"
-                        begin={`${offset * parseFloat(op.dur)}s`} />
-                    </circle>
-                    <circle r="1.8" fill="#D9774A">
-                      <animateMotion dur={op.dur} repeatCount="indefinite" begin={`${offset * parseFloat(op.dur)}s`}>
-                        <mpath href={`#${op.id}`} />
-                      </animateMotion>
-                      <animate attributeName="opacity" values="0;0.85;0.85;0"
-                        keyTimes="0;0.1;0.88;1" dur={op.dur} repeatCount="indefinite"
-                        begin={`${offset * parseFloat(op.dur)}s`} />
-                    </circle>
-                  </g>
-                ))
-              ))}
-
-              {/* ── Source nodes ── */}
-              {SOURCES.map((s) => (
-                <g key={s.label}>
-                  {/* Outer glow */}
-                  <circle cx={s.cx} cy={s.cy} r="26" fill={s.color} opacity="0.05" />
-                  {/* Node circle */}
-                  <circle cx={s.cx} cy={s.cy} r="17"
-                    fill={s.color} fillOpacity="0.1"
-                    stroke={s.color} strokeOpacity="0.45" strokeWidth="1" />
-                  {/* Abbreviation */}
-                  <text x={s.cx} y={s.cy} textAnchor="middle" dominantBaseline="central"
-                    fill={s.color} fontSize="9" fontFamily="DM Mono, monospace" fontWeight="500">
-                    {s.abbr}
-                  </text>
-                  {/* Label */}
-                  <text x={s.cx} y={s.cy + 29} textAnchor="middle"
-                    fill="#5A5850" fontSize="8.5" fontFamily="DM Mono, monospace">
-                    {s.label}
-                  </text>
-                </g>
-              ))}
-
-              {/* ── Hub — Stratum center node ── */}
-              {/* Pulse rings */}
-              <circle cx="499" cy="238" r="42" fill="none" stroke="#C4622D" strokeWidth="1" opacity="0">
-                <animate attributeName="r"      values="42;76"   dur="2.6s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.45;0" dur="2.6s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="499" cy="238" r="42" fill="none" stroke="#C4622D" strokeWidth="1" opacity="0">
-                <animate attributeName="r"      values="42;76"   dur="2.6s" repeatCount="indefinite" begin="-1.3s" />
-                <animate attributeName="opacity" values="0.45;0" dur="2.6s" repeatCount="indefinite" begin="-1.3s" />
-              </circle>
-              {/* Hub fill */}
-              <circle cx="499" cy="238" r="42"
-                fill="#C4622D" fillOpacity="0.08"
-                stroke="#C4622D" strokeOpacity="0.6" strokeWidth="1.5"
-                filter="url(#hub-glow)" />
-              <circle cx="499" cy="238" r="30"
-                fill="#C4622D" fillOpacity="0.05"
-                stroke="#C4622D" strokeOpacity="0.25" strokeWidth="1" />
-              {/* S letter */}
-              <text x="499" y="238" textAnchor="middle" dominantBaseline="central"
-                fill="#EDE9E0" fontSize="16" fontFamily="Syne, sans-serif" fontWeight="700">
-                S
-              </text>
-              {/* "Stratum" label below hub */}
-              <text x="499" y="295" textAnchor="middle"
-                fill="#72706A" fontSize="9" fontFamily="DM Mono, monospace" letterSpacing="0.08em">
-                STRATUM
-              </text>
-
-              {/* ── Output nodes ── */}
-              {OUTPUT_NODES.map((o) => (
-                <g key={o.label}>
-                  <rect x={o.cx - 42} y={o.cy - 16} width="84" height="32" rx="6"
-                    fill="#1B1C18" stroke="#2E2F2A" strokeWidth="1" />
-                  <text x={o.cx - 20} y={o.cy} textAnchor="middle" dominantBaseline="central"
-                    fill="#C4622D" fontSize="11" fontFamily="sans-serif">
-                    {o.icon}
-                  </text>
-                  <text x={o.cx + 4} y={o.cy} textAnchor="start" dominantBaseline="central"
-                    fill="#9A9888" fontSize="8.5" fontFamily="DM Mono, monospace">
-                    {o.label}
-                  </text>
-                </g>
-              ))}
-            </svg>
+            </div>
           </div>
 
           {/* Bottom status bar */}

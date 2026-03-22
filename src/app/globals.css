@@ -41,13 +41,14 @@
    */
   h1, h2, h3, h4, h5, h6 {
     overflow: visible;
-    /* Extra bottom padding so descenders (g, y, p) never clip */
-    padding-bottom: 2px;
+    /* em-based padding so descenders (g, y, p, q) never clip at any font size */
+    padding-bottom: 0.18em;
   }
 
   /* Any element using the heading font class should also be safe */
   .font-heading {
     overflow: visible;
+    padding-bottom: 0.18em;
   }
 }
 
@@ -68,9 +69,9 @@
 
   /* Large display heading using Syne */
   .display-heading {
-    @apply font-heading font-extrabold tracking-[-0.03em] leading-[1.1] text-tx;
+    @apply font-heading font-extrabold tracking-[-0.03em] leading-[1.25] text-tx;
     overflow: visible;
-    padding-bottom: 4px;
+    padding-bottom: 0.25em;
   }
 
   /* Serif italic accent */
