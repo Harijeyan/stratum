@@ -8,7 +8,7 @@ export default function Testimonial() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section className="section-pad relative overflow-hidden" ref={ref}>
+    <section className="section-pad relative" ref={ref}>
       {/* Radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"

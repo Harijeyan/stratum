@@ -18,7 +18,7 @@ const config: Config = {
         'accent-lt': '#D9774A',
         tx: '#EDE9E0',
         muted: '#72706A',
-        dim: '#45443F',
+        dim: '#6B6965',
         'g-green': '#4DAF7C',
         'g-amber': '#D4A23A',
         'g-red': '#D95C5C',

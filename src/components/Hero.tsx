@@ -336,15 +336,15 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="hidden lg:block relative"
+              className="block relative"
             >
               <div
                 className="relative rounded-2xl border border-border overflow-hidden"
                 style={{
                   background: 'rgba(20,21,18,0.6)',
                   backdropFilter: 'blur(2px)',
-                  height: 360,
                 }}
+                className="h-[260px] sm:h-[320px] lg:h-[360px]"
               >
                 {/* Top bar */}
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface/60">

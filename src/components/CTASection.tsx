@@ -34,7 +34,7 @@ export default function CTASection() {
   }
 
   return (
-    <section className="section-pad relative overflow-hidden" id="cta" ref={ref}>
+    <section className="section-pad relative" id="cta" ref={ref}>
       {/* Glow */}
       <div
         className="absolute inset-0 pointer-events-none"
