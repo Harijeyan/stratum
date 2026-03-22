@@ -29,7 +29,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   }, [inView, target])
 
   return (
-    <span ref={ref} className="counter-value font-heading font-extrabold tracking-[-0.04em] leading-none text-tx" style={{ fontSize: 'clamp(38px,5vw,60px)' }}>
+    <span ref={ref} className="counter-value font-heading font-extrabold tracking-[-0.04em] text-tx" style={{ fontSize: 'clamp(38px,5vw,60px)', lineHeight: 1.2 }}>
       {value}
       <span className="text-accent">{suffix}</span>
     </span>

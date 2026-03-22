@@ -98,8 +98,8 @@ export default function Pricing() {
                 </p>
 
                 <div className="mb-1">
-                  <span className="font-heading font-extrabold tracking-[-0.04em] text-tx leading-none overflow-visible"
-                    style={{ fontSize: plan.price === 'Custom' ? '38px' : '46px' }}>
+                  <span className="font-heading font-extrabold tracking-[-0.04em] text-tx overflow-visible"
+                    style={{ fontSize: plan.price === 'Custom' ? '38px' : '46px', lineHeight: 1.2 }}>
                     {plan.price === 'Free' || plan.price === 'Custom' ? plan.price : (
                       <><sup className="font-normal text-[22px] text-muted align-super">$</sup>{plan.price.slice(1)}</>
                     )}

@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Syne ExtraBold 'g' descender fix.
+ * The actual ExtraBold glyph extends ~35% below the baseline, but the font
+ * declares only 27.93%. We override both weights (latin) with the correct
+ * descent so the browser allocates enough room in every line box.
+ * The family name '__Syne_c1a642' is stable for this font config.
+ */
+@font-face {
+  font-family: '__Syne_c1a642';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  descent-override: 40%;
+  src: url('/_next/static/media/8a1d8947e5852e30-s.p.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: '__Syne_c1a642';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  descent-override: 40%;
+  src: url('/_next/static/media/680a7121f7a85e3f-s.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
 @layer base {
   :root {
     --accent-glow: rgba(196, 98, 45, 0.18);
@@ -42,13 +73,13 @@
   h1, h2, h3, h4, h5, h6 {
     overflow: visible;
     /* em-based padding so descenders (g, y, p, q) never clip at any font size */
-    padding-bottom: 0.18em;
+    padding-bottom: 0.35em;
   }
 
   /* Any element using the heading font class should also be safe */
   .font-heading {
     overflow: visible;
-    padding-bottom: 0.18em;
+    padding-bottom: 0.35em;
   }
 }
 
@@ -69,9 +100,10 @@
 
   /* Large display heading using Syne */
   .display-heading {
-    @apply font-heading font-extrabold tracking-[-0.03em] leading-[1.25] text-tx;
+    @apply font-heading font-extrabold tracking-[-0.03em] text-tx;
+    line-height: 1.5;
     overflow: visible;
-    padding-bottom: 0.25em;
+    padding-bottom: 0.35em;
   }
 
   /* Serif italic accent */
