@@ -14,9 +14,15 @@ const logos: LogoEntry[] = [
   { name: 'Webflow',  file: 'webflow-logo-1.svg', width: 96  },
 ]
 
-// Two identical copies — animation scrolls exactly one set width (-50%),
-// so the loop point is invisible.
-const track = [...logos, ...logos]
+// Each logo uses marginRight: 64 (not CSS gap) so the repeating period is
+// exactly sum(widths + 64) = 711px per set — the seam between sets has
+// the same spacing as between any two logos.
+//
+// 8 copies × 711px = 5688px total track.
+// translateX(-50%) = -2844px = exactly 4 × 711px → mathematically seamless.
+// At the furthest position on a 2560px screen: 2844+2560=5404 < 5688 ✓ no gaps.
+const COPIES = 8
+const track = Array.from({ length: COPIES }, () => logos).flat()
 
 export default function LogosBar() {
   return (
@@ -27,23 +33,30 @@ export default function LogosBar() {
         </p>
       </div>
 
-      {/* Fade mask hides the loop seam on both edges */}
+      {/* Edge fades hide the loop seam — logos emerge/disappear rather than
+          hard-starting at a visible boundary. */}
       <div
         className="overflow-hidden"
         style={{
-          maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+          maskImage:       'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
         }}
       >
-        <div className="flex items-center gap-16 w-max animate-marquee">
+        <div className="flex items-center w-max animate-marquee">
           {track.map(({ name, file, width }, i) => (
             <img
               key={i}
               src={`/customer_logos/${file}`}
               alt={name}
               draggable={false}
-              className="select-none object-contain"
-              style={{ width, height: 28, filter: 'brightness(0) invert(1)', opacity: 0.5 }}
+              className="select-none object-contain flex-shrink-0"
+              style={{
+                width,
+                height: 28,
+                marginRight: 64,
+                filter: 'brightness(0) invert(1)',
+                opacity: 0.5,
+              }}
             />
           ))}
         </div>
