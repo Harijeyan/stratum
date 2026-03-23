@@ -259,7 +259,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative pt-[180px] pb-[100px]">
+      <section className="relative pt-[clamp(100px,12vh,180px)] pb-[clamp(60px,8vh,100px)]">
         {/* Background orb — wrapped so it doesn't clip text */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
@@ -291,7 +291,7 @@ export default function Hero() {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="display-heading text-[clamp(42px,5.5vw,72px)] mb-6"
+                className="display-heading text-[clamp(42px,5.5vw,72px)] mb-6" style={{ lineHeight: 1.0 }}
               >
                 Ship <em className="serif-em text-accent-lt">data</em>
                 <br />like you ship
@@ -339,7 +339,7 @@ export default function Hero() {
               className="block relative"
             >
               <div
-                className="relative rounded-2xl border border-border overflow-hidden h-[260px] sm:h-[320px] lg:h-[360px]"
+                className="relative rounded-2xl border border-border overflow-hidden h-[260px] sm:h-[320px] lg:h-[min(360px,46vh)]"
                 style={{
                   background: 'rgba(20,21,18,0.6)',
                   backdropFilter: 'blur(2px)',

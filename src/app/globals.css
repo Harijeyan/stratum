@@ -101,7 +101,7 @@
   /* Large display heading using Syne */
   .display-heading {
     @apply font-heading font-extrabold tracking-[-0.03em] text-tx;
-    line-height: 1.5;
+    line-height: 1.1;
     overflow: visible;
     padding-bottom: 0.35em;
   }
