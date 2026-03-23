@@ -78,7 +78,7 @@ export default function Footer() {
           {/* Nav columns */}
           {NAV_COLS.map((col) => (
             <div key={col.heading}>
-              <h4 className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-dim mb-4 font-bold">
+              <h4 className="font-mono text-[11px] tracking-[0.1em] uppercase text-dim mb-4 font-bold">
                 {col.heading}
               </h4>
               <ul className="space-y-3">

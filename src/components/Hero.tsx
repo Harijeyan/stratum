@@ -116,7 +116,7 @@ function HeroCanvas() {
 
         // Destination label (below circle, same style as source labels)
         ctx.fillStyle = 'rgba(114, 112, 106, 0.75)'
-        ctx.font = '9px DM Mono, monospace'
+        ctx.font = '11px DM Mono, monospace'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'top'
         ctx.fillText(o.label, o.x, o.y + 11)
@@ -181,14 +181,14 @@ function HeroCanvas() {
 
         // Abbreviation
         ctx.fillStyle = s.color
-        ctx.font = '600 9px DM Mono, monospace'
+        ctx.font = '600 11px DM Mono, monospace'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText(labels[i].slice(0, 2).toUpperCase(), s.x, s.y)
 
         // Label below
         ctx.fillStyle = 'rgba(114, 112, 106, 0.7)'
-        ctx.font = '9px DM Mono, monospace'
+        ctx.font = '11px DM Mono, monospace'
         ctx.fillText(labels[i], s.x, s.y + 24)
       })
 
@@ -339,12 +339,11 @@ export default function Hero() {
               className="block relative"
             >
               <div
-                className="relative rounded-2xl border border-border overflow-hidden"
+                className="relative rounded-2xl border border-border overflow-hidden h-[260px] sm:h-[320px] lg:h-[360px]"
                 style={{
                   background: 'rgba(20,21,18,0.6)',
                   backdropFilter: 'blur(2px)',
                 }}
-                className="h-[260px] sm:h-[320px] lg:h-[360px]"
               >
                 {/* Top bar */}
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface/60">
@@ -353,7 +352,7 @@ export default function Hero() {
                     <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                     <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
                   </div>
-                  <span className="font-mono text-[10px] text-dim mx-auto">
+                  <span className="font-mono text-[11px] text-dim mx-auto">
                     stratum — data flow
                   </span>
                 </div>

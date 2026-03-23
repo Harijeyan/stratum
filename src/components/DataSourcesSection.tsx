@@ -32,7 +32,7 @@ function ChromeWindow({ url, children }: { url: string; children: React.ReactNod
         {/* URL bar */}
         <div className="flex-1 flex items-center gap-1.5 bg-bg/70 border border-border rounded-md px-2.5 py-[3px] min-w-0">
           <span className="font-mono text-[9px] text-g-green flex-shrink-0">●</span>
-          <span className="font-mono text-[10px] text-dim truncate">{url}</span>
+          <span className="font-mono text-[11px] text-dim truncate">{url}</span>
         </div>
         {/* Nav buttons placeholder */}
         <div className="flex gap-1 flex-shrink-0">
@@ -59,14 +59,14 @@ function AnalyticsDashboard() {
     <div className="p-4">
       {/* Sub-header */}
       <div className="flex items-center justify-between mb-3.5">
-        <span className="font-mono text-[10px] text-dim uppercase tracking-[0.08em]">
+        <span className="font-mono text-[11px] text-dim uppercase tracking-[0.08em]">
           Overview · Last 30 days
         </span>
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[9px] text-dim border border-border px-2 py-0.5 rounded-md">
+          <span className="font-mono text-[11px] text-dim border border-border px-2 py-0.5 rounded-md">
             Filter ▾
           </span>
-          <span className="font-mono text-[9px] text-dim border border-border px-2 py-0.5 rounded-md">
+          <span className="font-mono text-[11px] text-dim border border-border px-2 py-0.5 rounded-md">
             Export ↓
           </span>
         </div>
@@ -76,10 +76,10 @@ function AnalyticsDashboard() {
       <div className="grid grid-cols-4 gap-2 mb-4">
         {kpis.map((k) => (
           <div key={k.label} className="bg-s2 border border-border rounded-lg p-2.5">
-            <div className="font-mono text-[9px] text-dim mb-1.5 leading-tight">{k.label}</div>
+            <div className="font-mono text-[11px] text-dim mb-1.5 leading-tight">{k.label}</div>
             <div className="font-mono text-[14px] text-tx font-semibold leading-none mb-1">{k.value}</div>
             <div
-              className="font-mono text-[9px]"
+              className="font-mono text-[11px]"
               style={{ color: k.pos ? '#4DAF7C' : '#D4A23A' }}
             >
               {k.delta}
@@ -91,8 +91,8 @@ function AnalyticsDashboard() {
       {/* Bar chart */}
       <div className="bg-s2 border border-border rounded-lg p-3">
         <div className="flex items-center justify-between mb-2.5">
-          <span className="font-mono text-[9px] text-dim">Events / day</span>
-          <span className="font-mono text-[9px] text-accent">↑ trending up</span>
+          <span className="font-mono text-[11px] text-dim">Events / day</span>
+          <span className="font-mono text-[11px] text-accent">↑ trending up</span>
         </div>
         <div className="flex items-end gap-[3px] h-[54px]">
           {BARS.map((h, i) => (
@@ -110,12 +110,12 @@ function AnalyticsDashboard() {
           ))}
         </div>
         <div className="flex items-center justify-between mt-1.5">
-          <span className="font-mono text-[8px] text-dim">Mar 8</span>
-          <span className="font-mono text-[8px] text-dim">Mar 22</span>
+          <span className="font-mono text-[11px] text-dim">Mar 8</span>
+          <span className="font-mono text-[11px] text-dim">Mar 22</span>
         </div>
       </div>
 
-      <div className="mt-2 font-mono text-[9px] text-dim text-right">
+      <div className="mt-2 font-mono text-[11px] text-dim text-right">
         Updated 4s ago · auto-refresh on
       </div>
     </div>
@@ -135,10 +135,10 @@ function PipelineDashboard() {
     <div className="p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-3.5">
-        <span className="font-mono text-[10px] text-dim uppercase tracking-[0.08em]">
+        <span className="font-mono text-[11px] text-dim uppercase tracking-[0.08em]">
           Pipelines — production
         </span>
-        <span className="font-mono text-[9px] text-g-green bg-g-green/10 border border-g-green/20 px-2 py-0.5 rounded-full">
+        <span className="font-mono text-[11px] text-g-green bg-g-green/10 border border-g-green/20 px-2 py-0.5 rounded-full">
           ● 8 running
         </span>
       </div>
@@ -146,7 +146,7 @@ function PipelineDashboard() {
       {/* Column headers */}
       <div className="grid grid-cols-[1fr_44px_52px_44px] gap-x-2 px-2.5 mb-1.5">
         {['Name', 'Status', 'Dur', 'Rows'].map((h) => (
-          <span key={h} className="font-mono text-[8px] text-dim uppercase tracking-[0.08em]">
+          <span key={h} className="font-mono text-[11px] text-dim uppercase tracking-[0.08em]">
             {h}
           </span>
         ))}
@@ -159,7 +159,7 @@ function PipelineDashboard() {
             key={p.name}
             className="grid grid-cols-[1fr_44px_52px_44px] gap-x-2 bg-s2 border border-border rounded-lg px-2.5 py-2 items-center"
           >
-            <span className="font-mono text-[10px] text-tx truncate">{p.name}</span>
+            <span className="font-mono text-[11px] text-tx truncate">{p.name}</span>
             <div className="flex items-center gap-1">
               <span
                 className="w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -169,22 +169,22 @@ function PipelineDashboard() {
                 }}
               />
               <span
-                className="font-mono text-[9px]"
+                className="font-mono text-[11px]"
                 style={{ color: p.status === 'ok' ? '#4DAF7C' : '#D4A23A' }}
               >
                 {p.status}
               </span>
             </div>
-            <span className="font-mono text-[10px] text-muted">{p.dur}</span>
-            <span className="font-mono text-[10px] text-muted">{p.rows}</span>
+            <span className="font-mono text-[11px] text-muted">{p.dur}</span>
+            <span className="font-mono text-[11px] text-muted">{p.rows}</span>
           </div>
         ))}
       </div>
 
       {/* Footer */}
       <div className="mt-3 flex items-center justify-between pt-2.5 border-t border-border">
-        <span className="font-mono text-[9px] text-dim">Next run in 12m</span>
-        <span className="font-mono text-[9px] text-g-amber">⚠ 1 warning · 0 errors</span>
+        <span className="font-mono text-[11px] text-dim">Next run in 12m</span>
+        <span className="font-mono text-[11px] text-g-amber">⚠ 1 warning · 0 errors</span>
       </div>
     </div>
   )
@@ -210,10 +210,10 @@ function QualityDashboard() {
     <div className="p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-3.5">
-        <span className="font-mono text-[10px] text-dim uppercase tracking-[0.08em]">
+        <span className="font-mono text-[11px] text-dim uppercase tracking-[0.08em]">
           Data Quality · production
         </span>
-        <span className="font-mono text-[9px] text-dim border border-border px-2 py-0.5 rounded-md">
+        <span className="font-mono text-[11px] text-dim border border-border px-2 py-0.5 rounded-md">
           Full report →
         </span>
       </div>
@@ -243,8 +243,8 @@ function QualityDashboard() {
         </div>
         <div>
           <div className="font-mono text-[11px] text-tx mb-0.5">Overall Score</div>
-          <div className="font-mono text-[9px] text-g-green">↑ 2 pts from last week</div>
-          <div className="font-mono text-[9px] text-dim mt-0.5">847 assets checked</div>
+          <div className="font-mono text-[11px] text-g-green">↑ 2 pts from last week</div>
+          <div className="font-mono text-[11px] text-dim mt-0.5">847 assets checked</div>
         </div>
       </div>
 
@@ -252,7 +252,7 @@ function QualityDashboard() {
       <div className="space-y-2 mb-3.5">
         {dims.map((d) => (
           <div key={d.label} className="flex items-center gap-2">
-            <span className="font-mono text-[9px] text-dim w-[78px] flex-shrink-0 truncate">
+            <span className="font-mono text-[11px] text-dim w-[90px] flex-shrink-0 truncate">
               {d.label}
             </span>
             <div className="flex-1 h-[5px] bg-s2 border border-border rounded-full overflow-hidden">
@@ -261,7 +261,7 @@ function QualityDashboard() {
                 style={{ width: `${d.pct}%`, background: '#C4622D', opacity: 0.72 }}
               />
             </div>
-            <span className="font-mono text-[9px] text-muted w-7 text-right flex-shrink-0">
+            <span className="font-mono text-[11px] text-muted w-8 text-right flex-shrink-0">
               {d.pct}%
             </span>
           </div>
@@ -274,15 +274,15 @@ function QualityDashboard() {
           <div key={c.model} className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
               <span
-                className="font-mono text-[9px] flex-shrink-0"
+                className="font-mono text-[11px] flex-shrink-0"
                 style={{ color: c.result === 'ok' ? '#4DAF7C' : '#D4A23A' }}
               >
                 {c.result === 'ok' ? '✓' : '⚠'}
               </span>
-              <span className="font-mono text-[10px] text-tx">{c.model}</span>
-              <span className="font-mono text-[9px] text-dim">— {c.note}</span>
+              <span className="font-mono text-[11px] text-tx">{c.model}</span>
+              <span className="font-mono text-[11px] text-dim">— {c.note}</span>
             </div>
-            <span className="font-mono text-[9px] text-dim flex-shrink-0">{c.ago}</span>
+            <span className="font-mono text-[11px] text-dim flex-shrink-0">{c.ago}</span>
           </div>
         ))}
       </div>

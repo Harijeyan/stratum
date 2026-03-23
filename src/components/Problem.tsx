@@ -73,20 +73,20 @@ export default function Problem() {
             </div>
             <div className="p-5 space-y-0">
               <p className="text-[#2A2B25]">──────────────────────────────────</p>
-              <p><span className="text-[#5A5850]">DAG:</span> <span className="text-[#9A9888]">analytics_v2 </span><span className="text-[#3A3B35]">▸ </span><span className="text-[#9A9888]">run_id=2024-01-15</span></p>
+              <p><span className="text-[#5A5850]">DAG:</span> <span className="text-[#9A9888]">analytics_v2 </span><span className="text-[#525249]">▸ </span><span className="text-[#9A9888]">run_id=2024-01-15</span></p>
               <p className="text-[#2A2B25]">──────────────────────────────────</p>
               <p>&nbsp;</p>
               <p><span className="text-[#5A5850]">task:</span> <span className="text-[#9A9888]">stg_events__validate</span></p>
               <p><span className="text-g-red">✗ FAILED</span> <span className="text-[#5A5850]">after 4.2s</span></p>
               <p>&nbsp;</p>
               <p className="text-g-amber">! KeyError: &apos;user_id&apos;</p>
-              <p className="text-[#3A3B35]">  expected column not found in</p>
-              <p className="text-[#3A3B35]">  raw.events (schema: v3.1.0)</p>
+              <p className="text-[#525249]">  expected column not found in</p>
+              <p className="text-[#525249]">  raw.events (schema: v3.1.0)</p>
               <p>&nbsp;</p>
               <p className="text-[#5A5850]">downstream tasks:</p>
-              <p><span className="text-[#3A3B35]">  dim_users </span><span className="text-g-amber">skipped</span></p>
-              <p><span className="text-[#3A3B35]">  fct_sessions </span><span className="text-g-amber">skipped</span></p>
-              <p><span className="text-[#3A3B35]">  revenue_daily </span><span className="text-g-red">blocked</span></p>
+              <p><span className="text-[#525249]">  dim_users </span><span className="text-g-amber">skipped</span></p>
+              <p><span className="text-[#525249]">  fct_sessions </span><span className="text-g-amber">skipped</span></p>
+              <p><span className="text-[#525249]">  revenue_daily </span><span className="text-g-red">blocked</span></p>
               <p>&nbsp;</p>
               <p><span className="text-[#5A5850]">$ </span><span className="inline-block w-[7px] h-[13px] bg-accent align-middle animate-blink" /></p>
             </div>

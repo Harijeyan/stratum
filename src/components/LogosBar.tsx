@@ -21,7 +21,7 @@ export default function LogosBar() {
   return (
     <div className="border-t border-b border-border py-12 overflow-hidden">
       <div className="container-main mb-8">
-        <p className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-muted text-center">
+        <p className="font-mono text-[11px] tracking-[0.1em] uppercase text-muted text-center">
           Trusted by data teams building at scale
         </p>
       </div>
@@ -35,7 +35,7 @@ export default function LogosBar() {
               alt={name}
               draggable={false}
               className="select-none object-contain"
-              style={{ width, height: 28, filter: 'brightness(0) invert(1)', opacity: 0.4 }}
+              style={{ width, height: 28, filter: 'brightness(0) invert(1)', opacity: 0.5 }}
             />
           ))}
         </div>

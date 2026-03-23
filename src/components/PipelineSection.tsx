@@ -13,7 +13,7 @@ const LAYERS = [
 function LayerBar({ label, name, status, opacity, delay }: Omit<typeof LAYERS[0], 'key'>) {
   return (
     <div className="flex items-center gap-3 mb-2.5">
-      <span className="font-mono text-[10px] text-dim w-16 text-right flex-shrink-0">
+      <span className="font-mono text-[11px] text-dim w-16 text-right flex-shrink-0">
         {label}
       </span>
       <div className="flex-1 h-9 bg-s2 border border-border rounded-md overflow-hidden relative">
@@ -30,7 +30,7 @@ function LayerBar({ label, name, status, opacity, delay }: Omit<typeof LAYERS[0]
               left: '-100%',
             }}
           />
-          <span className="font-mono text-[11px] text-muted relative z-10">
+          <span className="font-mono text-[11px] text-muted relative z-10 leading-none">
             {name}
           </span>
           <span
@@ -149,10 +149,10 @@ export default function PipelineSection() {
               <div className="p-6">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-5">
-                  <span className="font-mono text-[10.5px] text-dim tracking-[0.08em] uppercase">
+                  <span className="font-mono text-[11px] text-dim tracking-[0.08em] uppercase">
                     analytics_pipeline
                   </span>
-                  <span className="font-mono text-[10.5px] text-g-green bg-g-green/10 border border-g-green/20 px-2.5 py-1 rounded-full">
+                  <span className="font-mono text-[11px] text-g-green bg-g-green/10 border border-g-green/20 px-2.5 py-1 rounded-full">
                     ● production
                   </span>
                 </div>
@@ -167,10 +167,10 @@ export default function PipelineSection() {
 
                 {/* Footer */}
                 <div className="flex items-center justify-between mt-5 pt-5 border-t border-border">
-                  <span className="font-mono text-[10px] text-dim">
+                  <span className="font-mono text-[11px] text-dim">
                     Last run: <span className="text-g-green">2m ago</span> · 847ms
                   </span>
-                  <span className="flex items-center gap-1.5 font-mono text-[10.5px] text-g-amber bg-g-amber/10 border border-g-amber/20 px-2.5 py-1 rounded-full">
+                  <span className="flex items-center gap-1.5 font-mono text-[11px] text-g-amber bg-g-amber/10 border border-g-amber/20 px-2.5 py-1 rounded-full">
                     <span>⚠</span> schema drift detected
                   </span>
                 </div>
@@ -186,7 +186,7 @@ export default function PipelineSection() {
                 <p className="font-mono text-[11px] text-tx leading-snug">
                   dim_users: column <code className="text-accent">user_segment</code> was removed upstream
                 </p>
-                <p className="font-mono text-[10px] text-dim mt-0.5">
+                <p className="font-mono text-[11px] text-dim mt-0.5">
                   detected 4 minutes ago · 2 models affected
                 </p>
               </div>

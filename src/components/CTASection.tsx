@@ -87,7 +87,7 @@ export default function CTASection() {
                     </svg>
                   </div>
                   <p className="font-heading font-bold text-[17px] text-tx overflow-visible">You&apos;re on the list.</p>
-                  <p className="font-mono text-[11px] text-dim">We&apos;ll be in touch within 48 hours.</p>
+                  <p className="font-mono text-[11px] text-dim">We'll be in touch within 48 hours.</p>
                 </motion.div>
               ) : (
                 <motion.form
@@ -136,7 +136,7 @@ export default function CTASection() {
                     )}
                   </AnimatePresence>
 
-                  <p className="font-mono text-[10.5px] text-dim mt-1">
+                  <p className="font-mono text-[11px] text-dim mt-1">
                     No credit card. No spam. Onboarding in under 10 minutes.
                   </p>
                 </motion.form>

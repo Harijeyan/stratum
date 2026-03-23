@@ -88,7 +88,7 @@ export default function Pricing() {
                 }`}
               >
                 {plan.featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-tx font-mono text-[10px] tracking-[0.08em] uppercase px-3.5 py-1 rounded-full whitespace-nowrap">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-tx font-mono text-[11px] tracking-[0.08em] uppercase px-3.5 py-1 rounded-full whitespace-nowrap">
                     Most popular
                   </span>
                 )}

@@ -55,7 +55,7 @@ export default function HowItWorks() {
               className="bg-surface hover:bg-s2 transition-colors duration-200 p-10"
             >
               <div className="flex items-center gap-3 mb-5">
-                <span className="font-mono text-[10.5px] text-dim tracking-[0.1em]">
+                <span className="font-mono text-[11px] text-dim tracking-[0.1em]">
                   {step.num} — {step.title}
                 </span>
                 <div className="flex-1 h-px bg-border2" />
@@ -66,7 +66,7 @@ export default function HowItWorks() {
               <p className="text-[13.5px] text-muted font-light leading-[1.7] mb-5">
                 {step.body}
               </p>
-              <div className="inline-flex items-center gap-2 font-mono text-[10px] text-dim border border-border2 px-2.5 py-1.5 rounded-md">
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] text-dim border border-border2 px-2.5 py-1.5 rounded-md">
                 <span className="w-1.5 h-1.5 rounded-full bg-g-green" />
                 {step.badge}
               </div>
