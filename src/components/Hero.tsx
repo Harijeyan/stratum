@@ -47,12 +47,12 @@ function HeroCanvas() {
     const hub = { x: cx, y: cy }
 
     const sources: Source[] = [
-      { x: W * 0.06, y: H * 0.18, color: '#336791' }, // PostgreSQL
-      { x: W * 0.06, y: H * 0.50, color: '#29B5E8' }, // Snowflake
-      { x: W * 0.06, y: H * 0.82, color: '#4285F4' }, // BigQuery
-      { x: W * 0.28, y: H * 0.26, color: '#FF9900' }, // S3
-      { x: W * 0.28, y: H * 0.62, color: '#EA4335' }, // Kafka
-      { x: W * 0.28, y: H * 0.90, color: '#47A248' }, // MongoDB
+      { x: W * 0.15, y: H * 0.18, color: '#336791' }, // PostgreSQL
+      { x: W * 0.15, y: H * 0.50, color: '#29B5E8' }, // Snowflake
+      { x: W * 0.15, y: H * 0.82, color: '#4285F4' }, // BigQuery
+      { x: W * 0.34, y: H * 0.26, color: '#FF9900' }, // S3
+      { x: W * 0.34, y: H * 0.62, color: '#EA4335' }, // Kafka
+      { x: W * 0.34, y: H * 0.90, color: '#47A248' }, // MongoDB
     ]
 
     const labels = ['Postgres', 'Snowflake', 'BigQuery', 'S3', 'Kafka', 'MongoDB']

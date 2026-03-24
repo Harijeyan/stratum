@@ -332,67 +332,83 @@ export default function DataSourcesSection() {
           </motion.p>
         </div>
 
-        {/* Overlapping browser windows — pyramid layout */}
-        <div
-          className="relative h-[430px] sm:h-[450px] lg:h-[460px] mb-16"
-          style={{ overflow: 'visible' }}
-        >
-          {/* Window 1 — Analytics Overview (back-left, peeks from left) */}
-          <motion.div
-            initial={{ opacity: 0, y: 28, rotate: -5 }}
-            animate={inView ? { opacity: 0.82, y: 0, rotate: -5 } : {}}
-            transition={{ duration: 0.75, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: 'absolute',
-              top: 70,
-              left: 0,
-              width: '58%',
-              transformOrigin: '50% 100%',
-              zIndex: 10,
-            }}
-          >
-            <ChromeWindow url="analytics.stratum.io/overview">
-              <AnalyticsDashboard />
-            </ChromeWindow>
-          </motion.div>
+        {/* Browser windows */}
+        <div className="relative mb-16">
+          {/* Mobile: single centered pipeline window */}
+          <div className="sm:hidden">
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.75, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <ChromeWindow url="app.stratum.io/pipelines">
+                <PipelineDashboard />
+              </ChromeWindow>
+            </motion.div>
+          </div>
 
-          {/* Window 3 — Data Quality (back-right, peeks from right) */}
-          <motion.div
-            initial={{ opacity: 0, y: 28, rotate: 4 }}
-            animate={inView ? { opacity: 0.88, y: 0, rotate: 4 } : {}}
-            transition={{ duration: 0.75, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: 'absolute',
-              top: 50,
-              right: 0,
-              width: '58%',
-              transformOrigin: '50% 100%',
-              zIndex: 20,
-            }}
+          {/* Desktop: overlapping pyramid layout */}
+          <div
+            className="hidden sm:block relative h-[450px] lg:h-[460px]"
+            style={{ overflow: 'visible' }}
           >
-            <ChromeWindow url="app.stratum.io/quality">
-              <QualityDashboard />
-            </ChromeWindow>
-          </motion.div>
+            {/* Window 1 — Analytics Overview (back-left, peeks from left) */}
+            <motion.div
+              initial={{ opacity: 0, y: 28, rotate: -5 }}
+              animate={inView ? { opacity: 0.82, y: 0, rotate: -5 } : {}}
+              transition={{ duration: 0.75, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: 'absolute',
+                top: 70,
+                left: 0,
+                width: '58%',
+                transformOrigin: '50% 100%',
+                zIndex: 10,
+              }}
+            >
+              <ChromeWindow url="analytics.stratum.io/overview">
+                <AnalyticsDashboard />
+              </ChromeWindow>
+            </motion.div>
 
-          {/* Window 2 — Pipeline Health (center-front, hero window) */}
-          <motion.div
-            initial={{ opacity: 0, y: 28, rotate: -1 }}
-            animate={inView ? { opacity: 1, y: 0, rotate: -1 } : {}}
-            transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: 'absolute',
-              top: 10,
-              left: '21%',
-              width: '58%',
-              transformOrigin: '50% 100%',
-              zIndex: 30,
-            }}
-          >
-            <ChromeWindow url="app.stratum.io/pipelines">
-              <PipelineDashboard />
-            </ChromeWindow>
-          </motion.div>
+            {/* Window 3 — Data Quality (back-right, peeks from right) */}
+            <motion.div
+              initial={{ opacity: 0, y: 28, rotate: 4 }}
+              animate={inView ? { opacity: 0.88, y: 0, rotate: 4 } : {}}
+              transition={{ duration: 0.75, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: 'absolute',
+                top: 50,
+                right: 0,
+                width: '58%',
+                transformOrigin: '50% 100%',
+                zIndex: 20,
+              }}
+            >
+              <ChromeWindow url="app.stratum.io/quality">
+                <QualityDashboard />
+              </ChromeWindow>
+            </motion.div>
+
+            {/* Window 2 — Pipeline Health (center-front, hero window) */}
+            <motion.div
+              initial={{ opacity: 0, y: 28, rotate: -1 }}
+              animate={inView ? { opacity: 1, y: 0, rotate: -1 } : {}}
+              transition={{ duration: 0.75, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                position: 'absolute',
+                top: 10,
+                left: '21%',
+                width: '58%',
+                transformOrigin: '50% 100%',
+                zIndex: 30,
+              }}
+            >
+              <ChromeWindow url="app.stratum.io/pipelines">
+                <PipelineDashboard />
+              </ChromeWindow>
+            </motion.div>
+          </div>
         </div>
 
         {/* Integration tags */}
