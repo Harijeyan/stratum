@@ -122,7 +122,7 @@
 
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-accent text-tx font-sans font-medium
+    @apply inline-flex items-center justify-center gap-2 bg-accent text-tx font-sans font-medium
            px-6 py-3 rounded-lg text-[15px] transition-all duration-200
            hover:bg-accent-lt hover:-translate-y-0.5;
     box-shadow: 0 0 0 0 var(--accent-glow);
@@ -132,7 +132,7 @@
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 bg-transparent text-muted font-sans font-normal
+    @apply inline-flex items-center justify-center gap-2 bg-transparent text-muted font-sans font-normal
            px-5 py-3 rounded-lg text-[15px] border border-border2
            transition-all duration-200 hover:text-tx hover:bg-s2;
   }
