@@ -339,7 +339,7 @@ export default function Hero() {
               className="block relative"
             >
               <div
-                className="relative rounded-2xl border border-border overflow-hidden h-[360px] sm:h-[400px] lg:h-[min(420px,46vh)]"
+                className="relative rounded-2xl border border-border overflow-hidden h-[400px] sm:h-[400px] lg:h-[min(420px,46vh)]"
                 style={{
                   background: 'rgba(20,21,18,0.6)',
                   backdropFilter: 'blur(2px)',
