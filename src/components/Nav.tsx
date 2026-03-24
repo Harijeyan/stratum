@@ -58,7 +58,7 @@ export default function Nav() {
             onClick={() => setModalOpen(true)}
             className="btn-primary text-[13px] !px-5 !py-2.5"
           >
-            Get early access ↗
+            Get early access →
           </button>
         </div>
       </nav>

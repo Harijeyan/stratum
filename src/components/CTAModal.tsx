@@ -40,7 +40,7 @@ const SIZE_OPTIONS = [
 ]
 
 const PIPELINE_OPTIONS = [
-  { value: '',      label: 'Pipelines you manage' },
+  { value: '',      label: 'How many?' },
   { value: '1-5',   label: '1 – 5 pipelines' },
   { value: '6-20',  label: '6 – 20 pipelines' },
   { value: '21-50', label: '21 – 50 pipelines' },
